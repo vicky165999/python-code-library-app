@@ -26,7 +26,6 @@ services:
     networks:
       - myapp
     deploy:
-	  replicas: 2
       resources:
         reservations:
           cpus: "0.25"
@@ -42,7 +41,6 @@ services:
     networks:
       - myapp
     deploy:
-	  replicas: 2
       resources:
         reservations:
           cpus: "0.25"
@@ -73,7 +71,6 @@ services:
     networks:
       - myapp
     deploy:
-	  replicas: 2
       resources:
         reservations:
           cpus: "0.25"
