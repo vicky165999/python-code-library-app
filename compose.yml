@@ -72,8 +72,8 @@ services:
     networks:
       - mynetwork
     deploy:
+      replicas: 3
       resources:
-        replicas: 3
         reservations:
           cpus: "0.25"
           memory: 100M
