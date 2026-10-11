@@ -9,7 +9,7 @@ services:
     volumes:
       - mydata:/var/lib/mysql/
     networks:
-      - myapp
+      - mynetwork
     deploy:
       resources:
         reservations:
@@ -25,7 +25,7 @@ services:
     ports:
       - "1112:5001"
     networks:
-      - myapp
+      - mynetwork
     deploy:
       resources:
         reservations:
@@ -40,7 +40,7 @@ services:
     ports:
       - "1113:5002"
     networks:
-      - myapp
+      - mynetwork
     deploy:
       resources:
         reservations:
@@ -55,7 +55,7 @@ services:
     ports:
       - "1114:5003"
     networks:
-      - myapp
+      - mynetwork
     deploy:
       resources:
         reservations:
@@ -70,7 +70,7 @@ services:
     ports:
       - "1115:5000"
     networks:
-      - myapp
+      - mynetwork
     deploy:
       resources:
         reservations:
@@ -80,7 +80,7 @@ services:
           cpus: "0.5"
           memory: 200M
 networks:
-  myapp:
+  mynetwork:
     driver: overlay
 volumes:
   mydata:
