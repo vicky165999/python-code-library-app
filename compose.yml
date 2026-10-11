@@ -1,60 +1,85 @@
 ---
 services:
   db:
-    image: shaikmustafa/arshad:db
-    deploy:
-      replicas: 1
+    container_name: db
+    image: db
     ports:
-      - "3306:3306"
+      - "1111:3306"
+    volumes:
+      - mydata:/var/lib/mysql/
     networks:
-      - mynetwork
+      - myapp
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.25"
+          memory: 100M
+        limits:
+          cpus: "0.5"
+          memory: 200M
 
   auth_service:
-    image: shaikmustafa/arshad:auth
-    deploy:
-      replicas: 1
+    container_name: auth_service
+    image: authimage
     ports:
-      - "5001:5001"
+      - "1112:5001"
     networks:
-      - mynetwork
-    depends_on:
-      - db
-    
-
+      - myapp
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.25"
+          memory: 100M
+        limits:
+          cpus: "0.5"
+          memory: 200M
   book_service:
-    image: shaikmustafa/arshad:book
-    deploy:
-      replicas: 1
+    container_name: book_service
+    image: bookimage
     ports:
-      - "5002:5002"
+      - "1113:5002"
     networks:
-      - mynetwork
-    depends_on:
-      - db
+      - myapp
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.25"
+          memory: 100M
+        limits:
+          cpus: "0.5"
+          memory: 200M
   borrow_service:
-    image: shaikmustafa/arshad:borrow
-    deploy:
-      replicas: 1
+    container_name: borrow_service
+    image: borrowimage
     ports:
-      - "5003:5003"
+      - "1114:5003"
     networks:
-      - mynetwork
-    depends_on:
-      - db
-
+      - myapp
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.25"
+          memory: 100M
+        limits:
+          cpus: "0.5"
+          memory: 200M
   frontend:
-    image: shaikmustafa/arshad:frontend
-    deploy:
-      replicas: 1
+    container_name: frontend
+    image: appimage
     ports:
-      - "5000:5000"
+      - "1115:5000"
     networks:
-      - mynetwork
-    depends_on:
-      - auth_service
-      - book_service
-      - borrow_service
-
+      - myapp
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.25"
+          memory: 100M
+        limits:
+          cpus: "0.5"
+          memory: 200M
 networks:
-  mynetwork:
+  myapp:
     driver: bridge
+volumes:
+  mydata:
