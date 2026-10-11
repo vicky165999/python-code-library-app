@@ -1,4 +1,9 @@
+from flask import Flask, jsonify
+import mysql.connector
 
+app = Flask(__name__)
+
+import os
 
 def get_db():
     return mysql.connector.connect(
